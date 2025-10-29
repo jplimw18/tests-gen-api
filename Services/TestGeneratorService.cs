@@ -18,7 +18,13 @@ public class TestGeneratorService : ITestGenerator
     
     public async void GenTests(byte[] file)
     {
-        string codeContext = await _analysis.ExtractCode(file);
+        string path = Environment.GetEnvironmentVariable("TEMP_FILE_PATH")!;
+        if (String.IsNullOrEmpty(path) || String.IsNullOrWhiteSpace(path))
+            throw new KeyNotFoundException("Uploads path's not found");
+
+        await FileUtil.ConvertByteToFile(file, path);
+
+        IEnumerable<String> files = await FileUtil.GetFileContent(path);
 
         throw new NotImplementedException();  
     }

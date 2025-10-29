@@ -4,5 +4,5 @@ namespace TestGenAPI.Interfaces;
 
 public interface ICodeExtractor
 {
-    Task<String> ExtractCode(byte[] file);
+    Task<String> ExtractCode(string filePath);
 }
