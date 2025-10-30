@@ -12,11 +12,15 @@ public static class FileUtil
         await File.WriteAllBytesAsync(path, bytes);
     }
 
-    public static async Task<IEnumerable<String>> GetFileContent(string filePath)
+    public static async Task<IEnumerable<String>> GetFilesContent(string path)
     {
-        if (!File.Exists(filePath))
+        if (!Directory.Exists(path))
             throw new FileNotFoundException("An error ocurred when try to get file content: The file path not found.");
 
-        throw new NotImplementedException();
+
+        return Directory.GetFiles(path)
+            .Select(async f => await File.ReadAllTextAsync(path))
+            .Select(t => t.Result);
+        
     }
 }

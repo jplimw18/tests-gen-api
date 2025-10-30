@@ -6,8 +6,8 @@ namespace TestGenAPI;
 
 public class CodeAnalyzer : ICodeExtractor
 {
-    public async Task<string> ExtractCode(string filePath)
+    public async Task<string> ExtractCode(string code)
     {
-        throw new NotImplementedException();
+        throw new NotImplementedException();   
     }
 }
